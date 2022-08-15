@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { GlobalStyle } from './GlobalStyle';
 import { Box } from './Box';
-import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
-import { Statistics } from './Statistics/Statistics';
-import { Notification } from './Notification/Notification';
+import { FeedbackOptions } from './FeedbackOptions';
+import { Statistics } from './Statistics';
+import { Notification } from './Notification';
 import Section from './Section/Section';
 
 export class App extends Component {
@@ -15,9 +15,18 @@ export class App extends Component {
 
   onLeaveFeedback = event => {
     const nameBtn = event.target.name;
-    nameBtn === 'Good' && this.setState({ good: this.state.good + 1 });
-    nameBtn === 'Neutral' && this.setState({ neutral: this.state.neutral + 1 });
-    nameBtn === 'Bad' && this.setState({ bad: this.state.bad + 1 });
+    nameBtn === 'Good' &&
+      this.setState(prevState => {
+        return { good: prevState.good + 1 };
+      });
+    nameBtn === 'Neutral' &&
+      this.setState(prevState => {
+        return { neutral: prevState.neutral + 1 };
+      });
+    nameBtn === 'Bad' &&
+      this.setState(prevState => {
+        return { bad: prevState.bad + 1 };
+      });
   };
 
   countTotalFeedback = () => {
