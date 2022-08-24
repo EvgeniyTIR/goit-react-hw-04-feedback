@@ -13,20 +13,10 @@ export class App extends Component {
     bad: 0,
   };
 
-  onLeaveFeedback = event => {
-    const nameBtn = event.target.name;
-    nameBtn === 'Good' &&
-      this.setState(prevState => {
-        return { good: prevState.good + 1 };
-      });
-    nameBtn === 'Neutral' &&
-      this.setState(prevState => {
-        return { neutral: prevState.neutral + 1 };
-      });
-    nameBtn === 'Bad' &&
-      this.setState(prevState => {
-        return { bad: prevState.bad + 1 };
-      });
+  onLeaveFeedback = el => {
+    this.setState(prevState => ({
+      [el]: prevState[el] + 1,
+    }));
   };
 
   countTotalFeedback = () => {
@@ -46,7 +36,7 @@ export class App extends Component {
       <Box paddingTop={6}>
         <Section title="Please Leave feedback">
           <FeedbackOptions
-            // options={options}
+            value={['good', 'neutral', 'bad']}
             onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>

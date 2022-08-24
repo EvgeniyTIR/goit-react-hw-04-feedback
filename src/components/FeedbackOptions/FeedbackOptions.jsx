@@ -5,18 +5,19 @@ import { Box } from 'components/Box';
 
 export class FeedbackOptions extends Component {
   render() {
-    const { onLeaveFeedback } = this.props;
+    const { onLeaveFeedback, value } = this.props;
     return (
       <Box display="flex" justifyContent="center" gridGap="10px">
-        <Button type="button" name="Good" onClick={onLeaveFeedback}>
-          Good
-        </Button>
-        <Button type="button" name="Neutral" onClick={onLeaveFeedback}>
-          Neutral
-        </Button>
-        <Button type="button" name="Bad" onClick={onLeaveFeedback}>
-          Bad
-        </Button>
+        {value.map(el => (
+          <Button
+            type="button"
+            onClick={() => onLeaveFeedback(el)}
+            name={el}
+            key={el}
+          >
+            {el}
+          </Button>
+        ))}
       </Box>
     );
   }
